@@ -1,12 +1,30 @@
-# Heritage website preview
+# Heritage Construction
 
-Static HTML, CSS and JavaScript. Open index.html or serve this directory with a static web server.
+A responsive website for Heritage Construction & Refrigeration Maintenance Ltd, built with HTML, CSS and JavaScript.
 
-Pages: index.html, projects.html, contact.html.
-Design follows the supplied Flitwick reference, with Heritage navy, gold and blue branding. The SVG logo is a web recreation of the supplied fascia, pending approval of final brand artwork.
+## Features
 
-Before launch: replace sample copy and stock imagery; confirm services, team, service areas, phone, email and hours; add approved projects and client logos; connect an enquiry service and add a privacy policy; remove the preview banner and noindex metadata once approved.
+- Responsive Home, Projects and Contact pages
+- Transparent navigation with a scroll transition
+- Smooth section navigation and fixed background imagery
+- Project category filters
+- Embedded Google Map
+- Contact form interface with browser validation
+- Keyboard navigation and reduced-motion support
 
-The enquiry form validates inputs but deliberately does not transmit or store data. Projects can be filtered by category. Mobile navigation supports Escape and keyboard focus.
+## Run locally
 
-Stock photographs are loaded from Unsplash; Montserrat is loaded from Google Fonts. The site needs internet access for these assets; a system font fallback is provided.
+Open `index.html` in a browser, or serve this folder with a local web server. No build step or package installation is required. An internet connection loads the map, stock photographs and web font.
+
+## Project structure
+
+- `index.html` — Home page
+- `projects.html` — Project gallery
+- `contact.html` — Contact page
+- `style.css` — Layout and styling
+- `app.js` — Navigation and interactions
+- `assets/` — Logo and architectural artwork
+
+## Credits
+
+Layout reference: [Flitwick Construction](https://flitwickconstruction.co.uk/). Photography: Unsplash. Typography: Montserrat via Google Fonts.
