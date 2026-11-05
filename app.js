@@ -3,7 +3,30 @@ menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu
 nav?.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu ☰'}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open')){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu ☰';menu.focus()}});
 document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')});button.classList.add('active');button.setAttribute('aria-pressed','true');document.querySelectorAll('.project').forEach(p=>p.hidden=button.dataset.filter!=='all'&&p.dataset.category!==button.dataset.filter)}));
-document.querySelector('.form')?.addEventListener('submit',e=>{e.preventDefault();document.querySelector('.form-status').textContent='Preview only — your enquiry has not been sent. We’ll connect this form to Heritage’s confirmed email before launch.'});
+const contactForm=document.querySelector('.form');
+contactForm?.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const status=contactForm.querySelector('.form-status');
+  const button=contactForm.querySelector('[type="submit"]');
+  if(!window.emailjs){status.textContent='The message service is unavailable. Please email us directly.';status.dataset.state='error';return}
+  button.disabled=true;
+  contactForm.setAttribute('aria-busy','true');
+  status.dataset.state='pending';
+  status.textContent='Sending your message…';
+  try{
+    await emailjs.sendForm('service_vcwt5jl','template_cusd42t',contactForm,{publicKey:'--dbauSGk8t725CIy'});
+    contactForm.reset();
+    status.dataset.state='success';
+    status.textContent='Thank you. Your message has been sent.';
+  }catch(error){
+    console.error('Contact form delivery failed',error);
+    status.dataset.state='error';
+    status.textContent='We could not send your message. Please try again or email us directly.';
+  }finally{
+    button.disabled=false;
+    contactForm.removeAttribute('aria-busy');
+  }
+});
 
 const header=document.querySelector('.header');
 function updateHeader(){
