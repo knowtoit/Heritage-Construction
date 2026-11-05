@@ -52,3 +52,36 @@ function sectionTarget(hash){try{return document.getElementById(decodeURICompone
 window.addEventListener('wheel',stopSectionScroll,{passive:true});
 window.addEventListener('touchstart',stopSectionScroll,{passive:true});
 window.addEventListener('keydown',event=>{if(['ArrowDown','ArrowUp','PageDown','PageUp','Home','End','Escape',' '].includes(event.key))stopSectionScroll()});
+
+
+const carousel = document.querySelector('.client-carousel');
+if (carousel) {
+  const track = carousel.querySelector('.client-track');
+  const originals = [...track.children];
+  originals.forEach(card => { const clone = card.cloneNode(true); clone.setAttribute('aria-hidden','true'); clone.querySelector('img').alt=''; track.append(clone); });
+  let paused = false, last = 0, frame, position = 0;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  function cycle(now) {
+    if (!last) last = now;
+    const delta = Math.min(now-last, 50); last = now;
+    if (!paused && !reduced.matches && !document.hidden) position += delta * .08;
+    const half = track.scrollWidth / 2;
+    if (position >= half) position -= half;
+    track.scrollLeft = position;
+    frame = requestAnimationFrame(cycle);
+  }
+  frame = requestAnimationFrame(cycle);
+  function step(direction) {
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+    const width = originals[0].getBoundingClientRect().width + gap;
+    position = Math.max(0, position + direction * width);
+    track.scrollLeft = position;
+  }
+  carousel.querySelector('.client-prev').addEventListener('click', () => step(-1));
+  carousel.querySelector('.client-next').addEventListener('click', () => step(1));
+  carousel.addEventListener('mouseenter', () => paused = true);
+  carousel.addEventListener('mouseleave', () => paused = false);
+  carousel.addEventListener('focusin', () => paused = true);
+  carousel.addEventListener('focusout', e => { if (!carousel.contains(e.relatedTarget)) paused = false; });
+  track.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1); } });
+}

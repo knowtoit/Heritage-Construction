@@ -45,3 +45,40 @@ html{scroll-padding-top:155px}
 
 /* A lighter translucent header lets the page remain visible underneath. */
 .header.scrolled,.contact-page .header.scrolled{background:rgba(20,42,64,.58);backdrop-filter:none;box-shadow:0 2px 12px #0001}
+
+/* Client logos keep their original proportions and colours. */
+.client-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;padding:12px 0 20px;margin:28px 0 0;scrollbar-width:thin;scrollbar-color:#d99438 #edf0f2}
+.client-card{flex:0 0 calc((100% - 72px)/4);height:180px;display:flex;align-items:center;justify-content:center;scroll-snap-align:start;border:1px solid #e4e8eb;border-radius:4px;background:#fff;padding:14px}
+.client-card img{width:auto;height:auto;max-width:100%;max-height:150px;object-fit:contain}
+.client-controls{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:22px}
+.client-controls button{border:1px solid #d6dde3;background:white;color:var(--navy);cursor:pointer;padding:8px 16px;min-height:44px}
+.client-controls button:hover{border-color:var(--gold);background:#faf6ef}
+.client-play{font-size:12px;min-width:145px}
+@media(max-width:900px){.client-card{flex-basis:calc((100% - 48px)/3)}}
+@media(max-width:600px){.client-track{gap:16px}.client-card{flex-basis:calc((100% - 16px)/2);height:150px;padding:10px}.client-card img{max-height:125px}}
+
+.client-carousel{position:relative;padding:0 44px}.client-track{scrollbar-width:none;scroll-snap-type:none}.client-track::-webkit-scrollbar{display:none}.client-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:1;border:1px solid #d6dde3;background:#fff;color:var(--navy);width:38px;height:46px;cursor:pointer}.client-prev{left:0}.client-next{right:0}.client-arrow:hover{border-color:var(--gold);background:#faf6ef}
+
+.client-arrow,.client-arrow:hover{border:0;background:transparent;box-shadow:none}
+.client-arrow{font-size:27px}
+
+
+/* Keep the full company name legible against the Home photograph. */
+.header:not(.scrolled) .brand{background:linear-gradient(90deg,rgba(20,42,64,.62),rgba(20,42,64,0));padding:10px 16px 10px 0;border-radius:3px}
+
+
+.brand{width:390px}
+@media(max-width:1000px){.brand{width:295px}}
+@media(max-width:720px){.brand{width:245px}}
+.header:not(.scrolled) .brand{background:linear-gradient(90deg,rgba(20,42,64,.86),rgba(20,42,64,.30));padding:12px 18px 12px 8px}
+
+
+/* Show the bold Heritage mark directly over the photo. */
+.header:not(.scrolled) .brand{background:none;padding:0}
+
+
+/* Heritage construction photograph used on Home and Contact. */
+.hero{background-image:linear-gradient(90deg,rgba(20,42,64,.38),rgba(20,42,64,.78)),url('assets/heritage-construction-site.jpeg');background-position:center center}
+.contact-page .page-head{background-image:linear-gradient(90deg,rgba(20,42,64,.70),rgba(20,42,64,.42)),url('assets/heritage-construction-site.jpeg');background-position:center 45%}
+@media(max-width:720px){.hero{background-image:linear-gradient(rgba(20,42,64,.48),rgba(20,42,64,.85)),url('assets/heritage-construction-site.jpeg');background-position:52% center}}
+
