@@ -4,7 +4,7 @@ A responsive website for Heritage Construction & Refrigeration Maintenance Ltd, 
 
 ## Features
 
-- Responsive Home, Projects and Contact pages
+- Responsive Home, Products and Contact pages
 - Transparent navigation with a scroll transition
 - Smooth section navigation and fixed background imagery
 - Project category filters
@@ -19,7 +19,7 @@ Open `index.html` in a browser, or serve this folder with a local web server. No
 ## Project structure
 
 - `index.html` — Home page
-- `projects.html` — Project gallery
+- `projects.html` — Products and services
 - `contact.html` — Contact page
 - `style.css` — Layout and styling
 - `app.js` — Navigation and interactions
