@@ -6,10 +6,7 @@ document.querySelectorAll('.filter').forEach(button=>button.addEventListener('cl
 document.querySelector('.form')?.addEventListener('submit',e=>{e.preventDefault();document.querySelector('.form-status').textContent='Preview only — your enquiry has not been sent. We’ll connect this form to Heritage’s confirmed email before launch.'});
 
 const header=document.querySelector('.header');
-const draftBanner=document.querySelector('.draft');
 function updateHeader(){
-  const bannerHeight=draftBanner?.offsetHeight||0;
-  header?.style.setProperty('--header-offset',`${Math.max(0,bannerHeight-window.scrollY)}px`);
   header?.classList.toggle('scrolled',window.scrollY>40);
 }
 window.addEventListener('scroll',updateHeader,{passive:true});
@@ -85,3 +82,14 @@ if (carousel) {
   carousel.addEventListener('focusout', e => { if (!carousel.contains(e.relatedTarget)) paused = false; });
   track.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1); } });
 }
+// Service cards: clamped text opens from the button or the text itself.
+document.querySelectorAll('.service .more').forEach(button => {
+  const card = button.closest('.service');
+  const toggle = () => {
+    const open = card.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(open));
+    button.textContent = open ? 'Show less ↑' : 'Read more →';
+  };
+  button.addEventListener('click', toggle);
+  card.querySelector('.service-text').addEventListener('click', () => { if (!card.classList.contains('open')) toggle(); });
+});
