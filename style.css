@@ -151,3 +151,5 @@ html{scroll-padding-top:155px}
 @media(max-width:720px){.copyright span{display:block}.copyright span+span{margin-top:6px}}
 
 .form-status[data-state="error"]{color:#9a2e2e}.form-status[data-state="pending"]{color:#465c70}.form .button:disabled{opacity:.6;cursor:wait}
+
+.copyright .site-credit a{display:inline;text-decoration:underline;text-underline-offset:2px}
